@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YUNI 予妳 | 溫柔而堅定的日系個人形象</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        yuni: {
+                            50: '#FDFBF7',
+                            100: '#F7F2EB',
+                            200: '#EDE4D9',
+                            300: '#D9C5B2',
+                            600: '#8C7B6B',
+                            700: '#635547',
+                            900: '#3D332A',
+                            accent: '#C29B7F'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Serif TC"', '"Hiragino Mincho ProN"', 'serif'],
+                        body: ['"Noto Sans TC"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts for Japanese minimal aesthetic -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FDFBF7;
+            color: #3D332A;
+        }
+
+        h1,
+        h2,
+        h3,
+        .serif-font {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .hide {
+            display: none !important;
+        }
+
+        /* Custom smooth transition for page switching */
+        .page-section {
+            animation: fadeIn 0.6s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-yuni-50 text-yuni-900 flex flex-col min-h-screen selection:bg-yuni-200">
+
+    <header
+        class="sticky top-0 z-50 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-yuni-200 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" onclick="switchPage('home')" class="group flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-full bg-yuni-200 flex items-center justify-center text-yuni-700 font-serif text-lg tracking-widest group-hover:bg-yuni-300 transition">
+                    予
+                </div>
+                <div>
+                    <span class="font-serif text-xl tracking-[0.2em] font-semibold text-yuni-900">YUNI</span>
+                    <span class="block text-[10px] tracking-widest text-yuni-600 uppercase">予妳 · 客製化霧眉</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm tracking-widest">
+                <button onclick="switchPage('home')" id="nav-home"
+                    class="nav-btn py-2 text-yuni-900 border-b-2 border-yuni-700 transition">首頁</button>
+                <button onclick="switchPage('story')" id="nav-story"
+                    class="nav-btn py-2 text-yuni-600 hover:text-yuni-900 border-b-2 border-transparent transition">品牌故事</button>
+                <button onclick="switchPage('portfolio')" id="nav-portfolio"
+                    class="nav-btn py-2 text-yuni-600 hover:text-yuni-900 border-b-2 border-transparent transition">作品集</button>
+                <button onclick="switchPage('contact')" id="nav-contact"
+                    class="nav-btn py-2 text-yuni-600 hover:text-yuni-900 border-b-2 border-transparent transition">聯絡我</button>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:block">
+                <button onclick="switchPage('contact')"
+                    class="px-5 py-2.5 bg-yuni-900 text-yuni-50 text-xs tracking-widest rounded-full hover:bg-yuni-700 transition shadow-sm">
+                    預約諮詢
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-yuni-900 focus:outline-none p-2">
+                <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-yuni-100 border-b border-yuni-200 px-6 py-4 space-y-3">
+            <button onclick="switchPage('home'); toggleMobileMenu();"
+                class="block w-full text-left py-2 tracking-widest text-sm text-yuni-900 font-medium">首頁</button>
+            <button onclick="switchPage('story'); toggleMobileMenu();"
+                class="block w-full text-left py-2 tracking-widest text-sm text-yuni-700">品牌故事</button>
+            <button onclick="switchPage('portfolio'); toggleMobileMenu();"
+                class="block w-full text-left py-2 tracking-widest text-sm text-yuni-700">作品集</button>
+            <button onclick="switchPage('contact'); toggleMobileMenu();"
+                class="block w-full text-left py-2 tracking-widest text-sm text-yuni-700">聯絡我</button>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- ================= PAGE 1: HOME (首頁: 品牌概念與服務項目) ================= -->
+        <section id="page-home" class="page-section">
+            <!-- Hero Section -->
+            <div class="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-b from-yuni-100/50 to-yuni-50">
+                <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yuni-200/60 text-yuni-700 text-xs tracking-widest">
+                            <i class="fa-regular fa-heart text-[10px]"></i> 專屬妳的個人形象訂製霧眉
+                        </div>
+                        <h1 class="text-4xl lg:text-6xl font-serif tracking-wide leading-tight text-yuni-900">
+                            美，不需要成為別人。<br><span class="text-yuni-accent italic font-light"></span>
+                        </h1>
+                        <p
+                            class="text-yuni-600 text-sm lg:text-base leading-relaxed tracking-wider font-light max-w-xl">
+                            在予妳 YUNI，我們相信每個人都有自己的美
+                        </p>
+                        <p class="text-yuni-600 text-sm lg:text-base leading-relaxed tracking-wider font-light max-w-xl">
+                            從理解妳的氣質與喜好開始，以客製化眉型設計，陪妳找到適合自己的樣子
+                        </p>
+                        <p class="text-yuni-600 text-sm lg:text-base leading-relaxed tracking-wider font-light max-w-xl">
+                            不追逐相同的標準，只希望妳在每一次照鏡子時，都能更自在地喜歡自己
+                        </p>
+                        <p class="text-yuni-700 text-sm font-medium tracking-wider">
+                            予妳 YUNI｜懂妳、予妳、像妳。
+                        </p>
+
+                        <div class="pt-4 flex flex-wrap gap-4">
+                            <button onclick="switchPage('portfolio')"
+                                class="px-8 py-3.5 bg-yuni-900 text-yuni-50 text-xs tracking-widest rounded-full hover:bg-yuni-700 transition shadow-sm">
+                                探索精選作品
+                            </button>
+                            <button onclick="switchPage('story')"
+                                class="px-8 py-3.5 border border-yuni-300 text-yuni-900 text-xs tracking-widest rounded-full hover:bg-yuni-200/50 transition">
+                                了解品牌故事
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 relative">
+                        <div
+                            class="relative mx-auto w-72 h-96 lg:w-80 lg:h-[420px] rounded-2xl overflow-hidden shadow-xl border-4 border-white bg-yuni-200">
+                            <img src="./IMG/溫馨美容護理中的專注時刻.png" alt="YUNI 予妳 品牌形象"
+                                class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-yuni-900/40 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-6 left-6 right-6 text-white">
+                                <span class="text-[10px] tracking-widest uppercase opacity-80">Brand Concept</span>
+                                <p class="font-serif text-lg tracking-wider">自然、知性、純粹</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Concept Section -->
+            <div class="py-20 max-w-5xl mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+                    <span class="text-xs uppercase tracking-[0.25em] text-yuni-600 font-semibold">Core Values</span>
+                    <h2 class="text-3xl font-serif text-yuni-900 tracking-wider">三大品牌概念</h2>
+                    <div class="w-12 h-0.5 bg-yuni-300 mx-auto"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-white p-8 rounded-2xl shadow-sm border border-yuni-200/60 hover:shadow-md transition text-center space-y-4">
+                        <div
+                            class="w-14 h-14 mx-auto rounded-full bg-yuni-100 flex items-center justify-center text-yuni-700 text-xl font-serif">
+                            01
+                        </div>
+                        <h3 class="font-serif text-xl text-yuni-900 tracking-wider">懂妳</h3>
+                        <p class="text-xs text-yuni-600 tracking-widest uppercase">UNDERSTAND</p>
+                        <p class="text-sm text-yuni-600 leading-relaxed font-light">
+                            傾聽每位顧客的需求，觀察五官、氣質與喜好，不以流行定義美，而是理解每個人的獨特。
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-white p-8 rounded-2xl shadow-sm border border-yuni-200/60 hover:shadow-md transition text-center space-y-4">
+                        <div
+                            class="w-14 h-14 mx-auto rounded-full bg-yuni-100 flex items-center justify-center text-yuni-700 text-xl font-serif">
+                            02
+                        </div>
+                        <h3 class="font-serif text-xl text-yuni-900 tracking-wider">予妳</h3>
+                        <p class="text-xs text-yuni-600 tracking-widest uppercase">GIVE</p>
+                        <p class="text-sm text-yuni-600 leading-relaxed font-light">
+                            以細心的客製化設計與溫柔陪伴，打造沒有壓力的霧眉體驗，讓每位顧客都能自在地做自己。
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-white p-8 rounded-2xl shadow-sm border border-yuni-200/60 hover:shadow-md transition text-center space-y-4">
+                        <div
+                            class="w-14 h-14 mx-auto rounded-full bg-yuni-100 flex items-center justify-center text-yuni-700 text-xl font-serif">
+                            03
+                        </div>
+                        <h3 class="font-serif text-xl text-yuni-900 tracking-wider">像妳</h3>
+                        <p class="text-xs text-yuni-600 tracking-widest uppercase">BE YOURSELF</p>
+                        <p class="text-sm text-yuni-600 leading-relaxed font-light">
+                            不追求千篇一律的標準美，而是保留每個人的原有特色，讓霧眉成為更喜歡自己的開始。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Section (新增服務項目) -->
+            <div class="py-20 bg-yuni-100/40 border-t border-yuni-200/50">
+                <div class="max-w-5xl mx-auto px-6 space-y-12">
+                    <div class="text-center max-w-2xl mx-auto space-y-4">
+                        <span class="text-xs uppercase tracking-[0.25em] text-yuni-600 font-semibold">Our Services</span>
+                        <h2 class="text-3xl font-serif text-yuni-900 tracking-wider">專業服務項目</h2>
+                        <p class="text-sm text-yuni-600 font-light">為妳量身打造的細緻美學體驗</p>
+                        <div class="w-12 h-0.5 bg-yuni-300 mx-auto"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Service 1 -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-yuni-200/60 space-y-4 hover:shadow-md transition">
+                            <div class="w-12 h-12 rounded-xl bg-yuni-100 flex items-center justify-center text-yuni-700 text-lg">
+                                <i class="fa-solid fa-feather"></i>
+                            </div>
+                            <h3 class="font-serif text-xl text-yuni-900 tracking-wider">日系輕柔霧眉</h3>
+                            <p class="text-sm text-yuni-600 leading-relaxed font-light">
+                                專為每位女孩打造如輕粉刷過般的自然柔霧感，告別每天早起畫眉的繁瑣，素顏也能擁有好氣色。
+                            </p>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-yuni-200/60 space-y-4 hover:shadow-md transition">
+                            <div class="w-12 h-12 rounded-xl bg-yuni-100 flex items-center justify-center text-yuni-700 text-lg">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <h3 class="font-serif text-xl text-yuni-900 tracking-wider">客製眉型設計</h3>
+                            <p class="text-sm text-yuni-600 leading-relaxed font-light">
+                                結合黃金三庭比例與個人氣質走向，深入溝通妳喜愛的風格，細心描繪出最適合妳的命定眉型。
+                            </p>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-yuni-200/60 space-y-4 hover:shadow-md transition">
+                            <div class="w-12 h-12 rounded-xl bg-yuni-100 flex items-center justify-center text-yuni-700 text-lg">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <h3 class="font-serif text-xl text-yuni-900 tracking-wider">霧眉精緻改色 / 補色</h3>
+                            <p class="text-sm text-yuni-600 leading-relaxed font-light">
+                                針對舊底色或需要微調對稱度的眉毛進行專業校色與自然銜接，讓眉眼重新煥發自信光采。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: BRAND STORY (品牌故事) ================= -->
+        <section id="page-story" class="page-section hide py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-6 space-y-16">
+                <!-- Header -->
+                <div class="text-center space-y-4">
+                    <span class="text-xs uppercase tracking-[0.25em] text-yuni-600 font-semibold">Our Origin</span>
+                    <h1 class="text-4xl font-serif text-yuni-900 tracking-wider">品牌故事：予妳的溫柔初心</h1>
+                    <div class="w-12 h-0.5 bg-yuni-300 mx-auto"></div>
+                </div>
+
+                <!-- Story Paragraphs -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 text-sm lg:text-base text-yuni-700 font-light leading-relaxed">
+                        <p>
+                            以前的我，也曾經不知道自己真正想要什麼。好像只要跟著大家的步伐走，把該做的事情做好，就可以了。
+                        </p>
+                        <p>
+                            直到接觸霧眉，我第一次發現，原來我的雙手，也可以讓一個人看著鏡子，慢慢露出喜歡自己的笑容。那個笑容，讓我想做一間不太一樣的工作室。
+                        </p>
+                        <p>
+                            因此，「YUNI 予妳」誕生了。我們希望成為妳在探索自我路途中的安靜港灣，用日系美學的細膩、溫度與質感，把最好、最真實的自己交還給妳。
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <div class="rounded-2xl overflow-hidden shadow-lg border border-yuni-200">
+                            <img src="./IMG/自然專業的眉部微刺工作室.png"
+                                alt="YUNI 創辦人故事" class="w-full h-80 object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline / Values Quote -->
+                <div class="bg-yuni-100/60 p-8 lg:p-12 rounded-3xl border border-yuni-200/60 text-center space-y-6">
+                    <i class="fa-solid fa-quote-left text-3xl text-yuni-400"></i>
+                    <blockquote
+                        class="font-serif text-xl lg:text-2xl text-yuni-900 tracking-wide leading-relaxed max-w-2xl mx-auto">
+                        「不用急著成為別人，妳本來的樣子，就是最動人的風景。」
+                    </blockquote>
+                    <p class="text-xs tracking-widest text-yuni-600 uppercase">— YUNI 予妳 品牌核心信念</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: PORTFOLIO (作品集: 6張卡片) ================= -->
+        <section id="page-portfolio" class="page-section hide py-20 bg-yuni-50">
+            <div class="max-w-6xl mx-auto px-6 space-y-12">
+                <!-- Header -->
+                <div class="text-center space-y-4 max-w-2xl mx-auto">
+                    <span class="text-xs uppercase tracking-[0.25em] text-yuni-600 font-semibold">Portfolio &
+                        Cases</span>
+                    <h1 class="text-4xl font-serif text-yuni-900 tracking-wider">精選形象作品集</h1>
+                    <p class="text-sm text-yuni-600 font-light tracking-wider">
+                        看見每一位夥伴在「YUNI 予妳」引導下的蛻變與獨特風采。
+                    </p>
+                    <div class="w-12 h-0.5 bg-yuni-300 mx-auto"></div>
+                </div>
+
+                <!-- 6 Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="overflow-hidden group">
+                        <div class="h-80 rounded-2xl overflow-hidden relative">
+                            <img src="./IMG/作品1.jpg"
+                                alt="作品1"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] tracking-widest rounded-full text-yuni-900">日系知性形象</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="overflow-hidden group">
+                        <div class="h-80 rounded-2xl overflow-hidden relative">
+                            <img src="./IMG/作品2.PNG"
+                                alt="作品2"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] tracking-widest rounded-full text-yuni-900">質感穿搭提案</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="overflow-hidden group">
+                        <div class="h-80 rounded-2xl overflow-hidden relative">
+                            <img src="./IMG/作品3-2.png"
+                                alt="作品3"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500" 
+                                >
+                            <span
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] tracking-widest rounded-full text-yuni-900">心靈內在對話</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="overflow-hidden group">
+                        <div class="h-80 rounded-2xl overflow-hidden relative">
+                            <img src="./IMG/作品4-1.png"
+                                alt="作品4"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] tracking-widest rounded-full text-yuni-900">社群美學規劃</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="overflow-hidden group">
+                        <div class="h-80 rounded-2xl overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=600"
+                                alt="作品5"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] tracking-widest rounded-full text-yuni-900">職場自信形象</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="overflow-hidden group">
+                        <div class="h-80 rounded-2xl overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600"
+                                alt="作品6"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] tracking-widest rounded-full text-yuni-900">生活美學專欄</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: CONTACT (聯絡我) ================= -->
+        <section id="page-contact" class="page-section hide py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-6 space-y-12">
+                <!-- Header -->
+                <div class="text-center space-y-4">
+                    <span class="text-xs uppercase tracking-[0.25em] text-yuni-600 font-semibold">Get in Touch</span>
+                    <h1 class="text-4xl font-serif text-yuni-900 tracking-wider">聯絡我與個人資訊</h1>
+                    <p class="text-sm text-yuni-600 font-light tracking-wider">
+                        隨時歡迎與我聯繫
+                    </p>
+                    <div class="w-12 h-0.5 bg-yuni-300 mx-auto"></div>
+                </div>
+
+                <!-- Personal Contact Info Cards -->
+                <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Name Card -->
+                    <div
+                        class="bg-yuni-50 p-8 rounded-2xl border border-yuni-200 text-center space-y-4 hover:shadow-md transition">
+                        <div
+                            class="w-12 h-12 mx-auto rounded-full bg-white flex items-center justify-center text-yuni-700 shadow-sm">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] text-yuni-600 uppercase tracking-widest mb-1">我的姓名</span>
+                            <span class="font-serif text-lg text-yuni-900 font-medium">邱亭瑜 (Iris)</span>
+                        </div>
+                    </div>
+
+                    <!-- Phone Card -->
+                    <div
+                        class="bg-yuni-50 p-8 rounded-2xl border border-yuni-200 text-center space-y-4 hover:shadow-md transition">
+                        <div
+                            class="w-12 h-12 mx-auto rounded-full bg-white flex items-center justify-center text-yuni-700 shadow-sm">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] text-yuni-600 uppercase tracking-widest mb-1">連絡電話</span>
+                            <span class="font-sans text-sm text-yuni-900 font-medium">0966-266899</span>
+                        </div>
+                    </div>
+
+                    <!-- Email Card -->
+                    <div
+                        class="bg-yuni-50 p-8 rounded-2xl border border-yuni-200 text-center space-y-4 hover:shadow-md transition">
+                        <div
+                            class="w-12 h-12 mx-auto rounded-full bg-white flex items-center justify-center text-yuni-700 shadow-sm">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] text-yuni-600 uppercase tracking-widest mb-1">電子信箱</span>
+                            <span
+                                class="font-sans text-xs text-yuni-900 font-medium break-all">vicky92432@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Social & Working Hours Note -->
+                <div
+                    class="max-w-2xl mx-auto bg-yuni-100/50 p-8 rounded-2xl border border-yuni-200 text-center space-y-4">
+                    <h3 class="font-serif text-lg text-yuni-900 tracking-wider">工作室服務時間與社群</h3>
+                    <p class="text-xs text-yuni-600 font-light leading-relaxed">
+                        服務時間：週二至週六 10:00 - 18:00<br>
+                        Instagram 官方帳號：<span class="font-medium text-yuni-900">@yuni_lazybrow</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-yuni-100 border-t border-yuni-200 py-12 mt-auto">
+        <div
+            class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div class="space-y-1">
+                <span class="font-serif text-lg tracking-[0.2em] font-semibold text-yuni-900">YUNI 予妳</span>
+                <p class="text-xs text-yuni-600 tracking-wider">溫柔而堅定，陪妳找回屬於自己的本真美學。</p>
+            </div>
+            <div class="flex items-center gap-6 text-yuni-700">
+                <a href="https://www.instagram.com/yuni_lazybrow?stkn=anQwNWpiYnd6NDl5" class="hover:text-yuni-900 transition"><i class="fa-brands fa-instagram text-lg"></i></a>
+                <a href="#" class="hover:text-yuni-900 transition"><i class="fa-brands fa-threads text-lg"></i></a>
+                <a href="#" class="hover:text-yuni-900 transition"><i class="fa-regular fa-envelope text-lg"></i></a>
+            </div>
+            <p class="text-[10px] text-yuni-600 tracking-widest">
+                &copy; 2026 YUNI 予妳. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Single-Page Application (SPA) navigation router
+        function switchPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(p => p.classList.add('hide'));
+
+            // Show target page
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                target.classList.remove('hide');
+            }
+
+            // Update nav active states
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-yuni-900', 'border-yuni-700');
+                btn.classList.add('text-yuni-600', 'border-transparent');
+            });
+
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.remove('text-yuni-600', 'border-transparent');
+                activeNav.classList.add('text-yuni-900', 'border-yuni-700');
+            }
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle mobile dropdown menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>
